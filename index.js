@@ -1,15 +1,14 @@
 import http from "http"
 import fs, { read } from "fs"
-import events from 'events'
-import e from "express";
+import express from "express";
+import mongodb from 'mongodb'
 const server = http.createServer(function(req,res){
+    if(req.url == '/create-db'){
+      let mongoClient =   mongodb.MongoClient;
+        let url = "mongodb://localhost:27017/db";
+      mongoClient.connect()
+    }
  
-    let eventEmitter = new events.EventEmitter();
-     eventEmitter.on("something",function(){
-        console.log("hello world")
-     })
-     eventEmitter.emit("something");
-     res.end();
 })
 
 server.listen(8000,'127.0.0.1');
